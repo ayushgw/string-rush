@@ -1,26 +1,34 @@
 'use strict';
 
 class Drop {
-	constructor(domElement){  //add position
+	constructor(domElement, position){
 		this.domElement = domElement;
+		this.position = position;
 	}
 
 	//Make the object fall
 	fall(){
 		var pos = 0;
 		var domElement = this.domElement;
+		domElement.css('left', this.position);
 
-		this.setI = setInterval(move,5);
+		this.setIntervalId = setInterval(move,5);
 
 		function move(){
 			pos++;
 			domElement.css('top', pos + 'px');
+
+			//Remove Objects after some time 
+			if(pos > 650){
+				domElement.remove();
+			}
 		}
 	}
+
 	//Stop Game
 	stop(){
-		if(this.setI){
-			clearInterval(this.setI);
+		if(this.setIntervalId){
+			clearInterval(this.setIntervalId);
 		}
 	}
 
@@ -33,25 +41,27 @@ class Controller {
 
 	//Creating objects on the go
 	createDrops(){
-		var playArea = this.playArea; 
-		this.createDropsIntervalId = setInterval(make, 1000);
+		var playArea = this.playArea;
 		var arr = [];
-
-		function make(){
-
-			var k = Math.floor(Math.random() * ( 90 - 65 + 1 )) + 65;
-			var ch = String.fromCharCode(k);
-			var left = Math.floor(Math.random() * 300 );
-			
-			var elem = $('<div id ="'+k+'" class="obj">'+ ch +'</div>');
-			$(playArea).append(elem);
 		
-			// Create a drop for this object
-			var dropObj = new Drop(elem);
-			dropObj.fall();
+		//Randomizing Time Intervals at which Objects fall**
 
-			arr.push(dropObj);
-		};
+			this.createDropsIntervalId = setInterval(make, 1200);
+
+			function make(){
+				var k = Math.floor(Math.random() * ( 90 - 65 + 1 )) + 65;
+				var ch = String.fromCharCode(k);
+				var left = Math.floor(Math.random() * 300 );
+				
+				var elem = $('<div id ="'+k+'" class="obj">'+ ch +'</div>');
+				$(playArea).append(elem);
+			
+				// Create a drop for this object
+				var dropObj = new Drop(elem, left);
+				dropObj.fall();
+	
+				arr.push(dropObj);
+			}
 
 	 //Randomize time using loop
 	    // (function loop() {
@@ -62,7 +72,7 @@ class Controller {
 	    // }());
 
 		this.abc = arr;
-	 }
+	}
 	stop(){
 		if(this.createDropsIntervalId){
 			clearInterval(this.createDropsIntervalId);
@@ -77,6 +87,7 @@ class Controller {
 }
 
 
+//Controller Events
 $(document).ready(function(){
 	console.log('#startup');
 
@@ -93,4 +104,20 @@ $(document).ready(function(){
 		controllerObj.reset();
 	});
 
+	// Dealing KeyEvents and Bursting matched keys
+	$(document).keydown(function(key){
+		var keycode = key.which;
+
+		// Add Burst Effect
+		// $('#'+keycode).animation(){
+
+		// };
+
+		$('#'+keycode).remove();
+	});
+
+
 });
+
+
+//Score Updater
