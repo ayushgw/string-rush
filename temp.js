@@ -1,23 +1,10 @@
 'use strict';
 
 class Drop {
-	constructor(domElement){
+	constructor(domElement){  //add position
 		this.domElement = domElement;
-		this.genLetter();
 	}
-	// Generating a random alphabet between A-Z
-	genLetter(){
-		var k = Math.floor(Math.random() * ( 90 - 65 + 1 )) + 65;
-		var ch = String.fromCharCode(k);
-		var left = Math.floor(Math.random() * 300 );
-		
-		$('#playArea').append('<span id ="obj'+k+'" class="obj" style="left: '+ left +';">'+ ch +'</span>');
-		// th.fall();
 
-		//Randomize time using loop
-
-		this.setT = setTimeout(genLetter, 1000);
-	}
 	//Make the object fall
 	fall(){
 		var pos = 0;
@@ -34,90 +21,76 @@ class Drop {
 	stop(){
 		if(this.setI){
 			clearInterval(this.setI);
-			clearInterval(this.SetT);
 		}
 	}
 
 }
 
-// class Controller {
-// 	constructor(playArea){
-// 		this.playArea = playArea;
-// 		this.create();
-// 	}
-// 	//Creating objects on the go
-// 	create(){
-// 		var playArea = this.playArea; 
-// 		// var timer = 300;
-// 		// var setIntervalId = setInterval(make, timer);
+class Controller {
+	constructor(playArea){
+		this.playArea = playArea;
+	}
 
-// 	    var chars = "abcdefghijklmnopqurstuvwxyz";
-// 	    var rObject = $('<div class = "obj"></div>');
+	//Creating objects on the go
+	createDrops(){
+		var playArea = this.playArea; 
+		this.createDropsIntervalId = setInterval(make, 1000);
+		var arr = [];
 
-// 		function make(){
-// 		    var rChar = chars.substr(Math.floor(Math.random() * 26), 1);
-// 	  	    console.log(rChar);
+		function make(){
 
-// 	  	    $(rObject).attr('id','obj'+rChar);
-// 	  	    $(rObject).html(rChar);
+			var k = Math.floor(Math.random() * ( 90 - 65 + 1 )) + 65;
+			var ch = String.fromCharCode(k);
+			var left = Math.floor(Math.random() * 300 );
+			
+			var elem = $('<div id ="'+k+'" class="obj">'+ ch +'</div>');
+			$(playArea).append(elem);
+		
+			// Create a drop for this object
+			var dropObj = new Drop(elem);
+			dropObj.fall();
 
-// 			$(playArea).append(rObject);
-// 		};
-// 		     //Randomize time using loop
+			arr.push(dropObj);
+		};
 
-// 	    (function loop() {
-// 	        var timer = Math.round(Math.random() * 5000) + 500;
-// 	        setTimeout(function() {
-// 	                make();
-// 	                loop();  
-// 	        }, timer);
-// 	    }());
-	
-// 	 }
-// 	stop(){
-// 	if(this.setIntervalId){
-// 		clearInterval(this.setIntervalId);
-// 	}
-//   }
+	 //Randomize time using loop
+	    // (function loop() {
+	    //     var timer = Math.round(Math.random() * 5000) + 500;
+	    //     setTimeout(function() {
+	    //             loop();  
+	    //     }, timer);
+	    // }());
 
-// }
+		this.abc = arr;
+	 }
+	stop(){
+		if(this.createDropsIntervalId){
+			clearInterval(this.createDropsIntervalId);
+		}
+		for(var i=0; i<this.abc.length; i++){
+			this.abc[i].stop();
+		}
+	}
+	reset(){
+		$(this.playArea).empty();
+	}
+}
 
 
 $(document).ready(function(){
 	console.log('#startup');
 
 	var elem = $('#playArea');
-	var dropOBJ = new Drop(elem);
+	var controllerObj = new Controller(elem);
 
-	// $('#start').click(function(){
-	// 	dropObj.stop();
-	// });
+	$('#start').click(function(){
+		controllerObj.createDrops();
+	});
 	$('#stop').click(function(){
-		dropObj.stop();
+		controllerObj.stop();
+	});
+	$('#reset').click(function(){
+		controllerObj.reset();
 	});
 
 });
-
-
-
-
-
-// $(document).ready(function(){
-// 	console.log('#startup');
-
-// 	// var elem = $('#obj0');
-// 	// var dropObj = new Drop(elem);
-
-// 	// $('#start').click(function(){
-// 	// 	dropObj.alphabet();
-// 	// 	dropObj.fall();
-// 	// });
-	
-// 	var elem = $('#playArea');
-// 	var dropObj = new Controller(elem);
-
-
-// 	$('#stop').click(function(){
-// 		dropObj.stop();
-// 	});
-// });

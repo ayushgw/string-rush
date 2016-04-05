@@ -12,8 +12,8 @@ body{
   border-radius: 5px;
   background-color: white;
   display: inline-block;
-  margin: auto;
-
+  margin-left: 200px;
+  overflow: hidden;
 }
 
 .obj {
@@ -28,18 +28,22 @@ body{
 }
 
 .blk{
-  display: inline-block;  
+  display: inline-block; 
+  float:left;
+  margin-left: 150px;
+  vertical-align: middle;
 }
 
 /*Buttons*/
-
 .btn {
-display:inline-block;
+width: 150px;
+line-height: 3em;
+display: block;
 padding: 10px 15px 11px !important;
 font-size: 18px !important;
 font-weight: bold;
 color: #ffffff;
-border-radius: 8px;
+border-radius: 10px;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
 border: 1px solid #57D6C7;
@@ -49,21 +53,18 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
 
-button#start
+#start
 {
-margin-left: 10px;
 background-color: #57d6c7;
 text-shadow: 1px 1px #57D6C7;
 }
 
-button#stop {
-margin-left: 10px;
+#stop {
 background-color: #F36C8C;
 text-shadow: 1px 1px #F36C8C;
 }
 
-button#reset {
-margin-left: 10px;
+#reset {
 background-color: black;
 text-shadow: 1px 1px black;
 }
