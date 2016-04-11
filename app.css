@@ -1,24 +1,28 @@
 body{
-  background-color: #e6f2ff;
+  background-color: black;
+  background-image: url('wood.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h4{
+  font-variant: small-caps;
+  font-weight: bold;
 }
 
 #playArea {
-  width: 400px;
-  height: 600px;
+  height: 650px;
   position: relative;
-  border-color: #808080;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 5px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.3);
   display: inline-block;
-  margin-left: 200px;
+  margin-left: 20px;
   overflow: hidden;
 }
 
 .obj {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
   position: absolute;
   background-color: teal;
   top:0px;
@@ -27,44 +31,37 @@ body{
   text-align: center;
 }
 
-.blk{
-  display: inline-block; 
-  float:left;
-  margin-left: 150px;
-  vertical-align: middle;
+.mid{
+  text-align: center;
 }
 
-/*Buttons*/
-.btn {
-width: 150px;
-line-height: 3em;
-display: block;
-padding: 10px 15px 11px !important;
-font-size: 18px !important;
-font-weight: bold;
-color: #ffffff;
-border-radius: 10px;
--moz-border-radius: 5px;
--webkit-border-radius: 5px;
-border: 1px solid #57D6C7;
-cursor: pointer;
-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
--moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
--webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+.big-icon{
+  font-size: 8em !important;
 }
 
 #start
 {
-background-color: #57d6c7;
-text-shadow: 1px 1px #57D6C7;
+text-shadow: 1px 1px white;
 }
 
 #stop {
-background-color: #F36C8C;
-text-shadow: 1px 1px #F36C8C;
+text-shadow: 1px 1px white;
 }
 
 #reset {
-background-color: black;
-text-shadow: 1px 1px black;
+text-shadow: 1px 1px white;
+}
+
+/*Score*/
+#score{
+width: 200px;
+height: 200px;
+display: block;
+font-weight: bold;
+border-radius: 15px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border: 2px solid white;
+text-align: center;
+font-size: 10em;
 }

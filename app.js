@@ -12,46 +12,46 @@ class Drop {
 		var domElement = this.domElement;
 		domElement.css('left', this.position);
 
-		this.setIntervalId = setInterval(move,5);
+		this.setIntervalId = setInterval(move,10);
 
 		function move(){
 			pos++;
 			domElement.css('top', pos + 'px');
 
 			//Remove Objects after some time 
-			if(pos > 650){
+			if(pos > 750){
 				domElement.remove();
 			}
 		}
 	}
-
 	//Stop Game
 	stop(){
 		if(this.setIntervalId){
 			clearInterval(this.setIntervalId);
 		}
 	}
-
 }
 
 class Controller {
 	constructor(playArea){
 		this.playArea = playArea;
+		this.wid = playArea.width();
 	}
 
 	//Creating objects on the go
 	createDrops(){
 		var playArea = this.playArea;
+		var width = this.wid;
 		var arr = [];
 		
 		//Randomizing Time Intervals at which Objects fall**
 
-			this.createDropsIntervalId = setInterval(make, 1200);
+			this.createDropsIntervalId = setInterval(make, 1500);
 
 			function make(){
 				var k = Math.floor(Math.random() * ( 90 - 65 + 1 )) + 65;
 				var ch = String.fromCharCode(k);
-				var left = Math.floor(Math.random() * 300 );
+				var left = Math.floor(Math.random() * width );
 				
 				var elem = $('<div id ="'+k+'" class="obj">'+ ch +'</div>');
 				$(playArea).append(elem);
@@ -62,15 +62,6 @@ class Controller {
 	
 				arr.push(dropObj);
 			}
-
-	 //Randomize time using loop
-	    // (function loop() {
-	    //     var timer = Math.round(Math.random() * 5000) + 500;
-	    //     setTimeout(function() {
-	    //             loop();  
-	    //     }, timer);
-	    // }());
-
 		this.abc = arr;
 	}
 	stop(){
@@ -82,8 +73,17 @@ class Controller {
 		}
 	}
 	reset(){
+		if(this.createDropsIntervalId){
+			clearInterval(this.createDropsIntervalId);
+		}
 		$(this.playArea).empty();
+
+		//Score Reset to Zero
+		$('#score').text('0');
 	}
+	
+	//Miss Check**
+
 }
 
 
@@ -104,20 +104,24 @@ $(document).ready(function(){
 		controllerObj.reset();
 	});
 
+	var scoreUpdater = 0;
+
 	// Dealing KeyEvents and Bursting matched keys
 	$(document).keydown(function(key){
 		var keycode = key.which;
+		var ch = String.fromCharCode(keycode);
 
-		// Add Burst Effect
-		// $('#'+keycode).animation(){
+		// Add Burst Effect**
 
-		// };
+		 var len = $('#'+keycode).length;
+		 if(len==1){
+		 	scoreUpdater++;
+		 	$('#'+keycode).remove();
+		 	$('#score').text(scoreUpdater);
+		 }
 
-		$('#'+keycode).remove();
+		 if(scoreUpdater==10){
+		 	alert('YOU WIN!');
+		 }
 	});
-
-
 });
-
-
-//Score Updater

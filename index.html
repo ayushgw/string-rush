@@ -2,21 +2,58 @@
 <html>
 <head>
 	<title>String Rush</title>
+		<meta charset="UTF-8">
 		<script type="text/javascript" src="jquery.js"></script>
 		<script type="text/javascript" src="app.js"></script>	
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
 		<link rel="stylesheet" type="text/css" href="app.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
 
-<div class="blk" id="playArea">
+<div class="container">
+  <div class="row">
+	<div class="col-md-5" id="playArea"></div>
+	<br><br>
+	<br><br>
 
+	<div class="col-md-5 col-md-offset-1">
+	  
+	  <div class="row">
+	 	 <div class="col-md-offset-3" id="score">
+	  		0
+	  	 </div>
+	  </div>
+
+	  <br><br>
+	  <br><br>
+	  <br><br>
+	  
+	  <div class="row">
+	   	 <div class="col-md-4 mid">
+			<i class="btn fa fa-play-circle-o big-icon" id="start"></i>
+			<h4>start</h4>
+	  	 </div>
+	  	
+	  	 <div class="col-md-4 mid">
+			<i class="btn fa fa-stop-circle-o big-icon" id="stop"></i>
+			<h4>stop</h4>		
+	  	 </div>
+
+	  	 <div class="col-md-4 mid">
+			<i class="btn fa fa-refresh big-icon" id="reset"></i>
+			<h4>reset</h4>
+	  	 </div>
+	  </div>
+
+	</div>
+  </div>
 </div>
 
-<div class="blk">
-	<button class= "btn" id="start">Start</button>
-	<button class= "btn" id="stop">Stop</button>
-	<button class= "btn" id="reset">Reset</button>
-</div>
+<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </body>
 </html>
