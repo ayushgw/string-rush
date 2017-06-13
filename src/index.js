@@ -65,16 +65,9 @@ class Controller {
 				arr.push(dropObj);
 			}
 
-	 //Randomize time using loop
-	    // (function loop() {
-	    //     var timer = Math.round(Math.random() * 5000) + 500;
-	    //     setTimeout(function() {
-	    //             loop();
-	    //     }, timer);
-	    // }());
-
 		this.abc = arr;
 	}
+
 	stop(){
 		if(this.createDropsIntervalId){
 			clearInterval(this.createDropsIntervalId);
@@ -83,7 +76,8 @@ class Controller {
 			this.abc[i].stop();
 		}
 	}
-	reset(){
+
+  reset(){
 		$(this.gamefloor).empty();
 	}
 }

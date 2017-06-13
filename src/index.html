@@ -14,7 +14,16 @@
   <!-- Primary Page Layout –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="three columns">Something something...</div>
+      <div class="three columns plank">
+        <div class="score_container">
+          <div class="score_block">Score</div>
+          <div class="score_block" id="score">10</div>
+        </div>
+        <div class="score_container">
+          <div class="score_block">Missed</div>
+          <div class="score_block" id="missed">5</div>
+        </div>
+      </div>
       <div class="six columns" id="game_container">
         <div id="gamefloor"></div>
         <div class="row functions">
@@ -23,7 +32,9 @@
         	<button class="function_buttons" id="reset_button"><i class="mdi mdi-24px mdi-stop-circle-outline"></i></button>
         </div>
       </div>
-      <div class="three columns">Something something...</div>
+      <div class="three columns plank">
+        <div>Controls</div>
+      </div>
     </div>
   </div>
 
