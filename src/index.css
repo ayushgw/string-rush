@@ -1,0 +1,36 @@
+body {
+  background-color: #3B3F3F;
+  margin: 0px;
+}
+
+#game_container {
+  height: 100vh;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.functions {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 999;
+}
+.function_buttons {
+  margin: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.obj {
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  background-color: #F78059;
+  top:0px;
+  color: #3B3F3F;
+  border-radius: 5px 5px 20px 20px;
+  text-align: center;
+}

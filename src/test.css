@@ -1,0 +1,81 @@
+body{
+  background-color: #6BC6BD;
+  /*background-image: url('wood.jpg');*/
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h4{
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+#playArea {
+  height: 100vh;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  margin-left: 20px;
+  overflow: hidden;
+}
+
+.obj {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  position: absolute;
+  background-color: teal;
+  top:0px;
+  color: white;
+  border-radius: 5px 5px 20px 20px;
+  text-align: center;
+}
+
+.mid{
+  text-align: center;
+}
+
+.big-icon{
+  font-size: 8em !important;
+}
+
+#start
+{
+text-shadow: 1px 1px white;
+}
+
+#stop {
+text-shadow: 1px 1px white;
+}
+
+#reset {
+text-shadow: 1px 1px white;
+}
+
+/*Score*/
+#score{
+width: 200px;
+height: 200px;
+display: inline-block;
+font-weight: bold;
+border-radius: 15px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border: 2px solid white;
+text-align: center;
+font-size: 10em;
+}
+
+#misses{
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  font-weight: bold;
+  border-radius: 15px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 5em;
+  background-color: rgba(255, 0, 0, 0.6);
+}
