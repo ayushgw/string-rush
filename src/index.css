@@ -5,6 +5,7 @@ body {
 
 #game_container {
   height: 100vh;
+  min-width: 350px;
   position: relative;
   background-color: rgba(255, 255, 255, 0.3);
   overflow: hidden;
@@ -57,12 +58,14 @@ body {
   margin: 4%;
 }
 .obj {
+  top:0px;
   width: 2.4rem;
   height: 2.4rem;
   position: absolute;
-  background-color: #F78059;
-  top:0px;
   color: #3B3F3F;
-  border-radius: 5px 5px 20px 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
   text-align: center;
+  box-sizing: border-box;
 }
