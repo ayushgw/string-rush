@@ -57,3 +57,6 @@ body {
   width: 100%;
   margin: 4%;
 }
+.underline {
+  border-bottom: 1px solid white;
+}
