@@ -1,22 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>String Rush</title>
-		<!-- <script type="text/javascript" src="jquery.js"></script> -->
-		<!-- <script type="text/javascript" src="app.js"></script>	 -->
-		<!-- <link rel="stylesheet" type="text/css" href="app.css"> -->
-<link href="style-d97e2329bf.css" rel="stylesheet"></head>
+  <meta charset="utf-8">
+  <title>String Rush</title>
+  <meta name="description" content="Typing Game">
+  <meta name="author" content="Ayush Goswami">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" type="image/png" href="Assets/myFavicon.png">
+<link href="style-9b1061d638.css" rel="stylesheet"></head>
 <body>
 
-<div class="blk" id="playArea">
+  <!-- Game Layout –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="three columns plank">
+        <div class="score_container">
+          <div class="score_block">Score</div>
+          <div class="score_block" id="score">0</div>
+        </div>
+        <div class="score_container">
+          <div class="score_block">Missed</div>
+          <div class="score_block" id="missed">0</div>
+        </div>
+      </div>
+      <div class="five columns" id="game_container">
+        <div id="gameBox"></div>
+        <div class="row functions">
+          <button class="function_buttons" id="start_button"><i class="mdi mdi-24px mdi-play-circle-outline"></i></button>
+          <button class="function_buttons" id="pause_button"><i class="mdi mdi-24px mdi-pause-circle-outline"></i></button>
+          <button class="function_buttons" id="quit_button">Quit</button>
+        </div>
+      </div>
+      <div class="four columns plank">
+        <div class="controls_container">
+          <div class="underline">Controls</div>
+          <!-- <div>Spacebar -- Play/Pause the game.</div> -->
+          <div>#1 Esc --> Quit</div>
+        </div>
+        <div class="rules_container">
+          <div class="underline">Rules</div>
+          <div>#1 Press the repective letter key to score.</div>
+          <div>#2 One right hit rewards one point.</div>
+          <div>#3 Each miss gives away one point.</div>
+          <div>#4 Game over at 10 misses.</div>
+          <div>#5 Game can be pause.</div>
+          <div>#6 Quit current game to start a new one..</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Layout –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-</div>
+  <!-- Modal Layout –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div id="modal" class="modal"></div>
+  <!-- End Layout –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
-<div class="blk">
-	<button class= "btn" id="start">Start</button>
-	<button class= "btn" id="stop">Stop</button>
-	<button class= "btn" id="reset">Reset</button>
-</div>
-
-<script type="text/javascript" src="main-2b71028271.js"></script></body>
+<script type="text/javascript" src="main-b8e8044b15.js"></script></body>
 </html>
