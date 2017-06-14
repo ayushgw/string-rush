@@ -15,9 +15,6 @@ class Modal {
     $(modal).css('display', 'none');
   }
 
-  confirm() {
-    return true;
-  }
 }
 
 export default Modal;

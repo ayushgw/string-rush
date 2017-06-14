@@ -7,8 +7,14 @@ class Controller {
     this.gameBox = gameBox;
   }
 
-  //Creating objects on the go
-  play(){
+  // Creating objects on the go
+  play() {
+    if(this.drops) {
+      this.drops.map(function(drop) {
+        drop.fall();
+      });
+    }
+
     var gameBox = this.gameBox;
     var widthOfGameBox = Math.floor($(gameBox).width());
     var drops = [];
@@ -47,31 +53,48 @@ class Controller {
     this.drops = drops;
   }
 
-  pause(){
+  pause() {
     clearTimeout(this.setTimeoutId);
     this.drops.map(function(drop) {
       drop.stop();
     });
   }
 
-  quit(){
+  quit() {
+    this.pause();
+    // Create and Inject Modal Element in the DOM
     let modalElem = $('#modal');
     let modalContent = `
     <div class="modal-content">
-      <span class="close">[<span>&times;</span>]</span>
-      <p>The game's progress will be lost.<br>
-      Are you sure you want to quit?</p>
-      <button class="modal_buttons">[OK]</button>
-      <button class="modal_buttons">[CANCEL]</button>
+    <span class="close">[<span>&times;</span>]</span>
+    <p>The game's progress will be lost.<br>
+    Are you sure you want to quit?</p>
+    <button id="modal_ok" class="modal_buttons">[OK]</button>
+    <button id="modal_cancel" class="modal_buttons">[CANCEL]</button>
     </div>
     `;
     $(modalElem).append(modalContent);
 
+    // Instatiating Modal
     let modal = new Modal(modalElem);
     modal.open();
 
-    // clearTimeout(this.setTimeoutId);
-    // $(this.gameBox).empty();
+    let setTimeoutId = this.setTimeoutId;
+    let gameBox = this.gameBox;
+
+    // On OK
+    $('#modal_ok').click(function() {
+      clearTimeout(setTimeoutId);
+      $(gameBox).empty();
+      modal.close();
+    });
+
+    // On Cancel
+    var self = this;
+    $('#modal_cancel').click(function() {
+      modal.close();
+      self.play();
+    });
   }
 }
 
