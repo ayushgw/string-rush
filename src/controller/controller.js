@@ -18,7 +18,6 @@ class Controller {
     var gameBox = this.gameBox;
     var widthOfGameBox = Math.floor($(gameBox).width());
     var drops = [];
-    var missed = 0;
 
     // Create a drop
     let createOneDrop = () => {
@@ -41,13 +40,45 @@ class Controller {
       return interval;
     }
 
+    let showGameOverModal = () => {
+      // Create and Inject Modal Element in the DOM
+      let modalElem = $('#modal');
+      let modalContent = `
+      <div class="modal-content">
+      <span class="close">[<span>&times;</span>]</span>
+      <p>Game Over! Your final score is <span id="finalScore"></span>.</p>
+      <button id="modal_ok" class="modal_buttons">[OK]</button>
+      </div>
+      `;
+      $(modalElem).append(modalContent);
+      $('finalScore').innerText = window.score;
+
+      // Instatiating Modal
+      let modal = new Modal(modalElem);
+      modal.open();
+
+      // On OK
+      $('#modal_ok').click(function() {
+        modal.close();
+        location.reload();
+      });
+    }
+
     // Create drops at random intervals
     var self = this;
     (function dropsLoop() {
       let interval = getDropInterval();
       self.setTimeoutId = setTimeout(function() {
         createOneDrop();
-        dropsLoop();
+        if (window.missed < 1) {
+          dropsLoop();
+        }
+        else {
+          self.pause();
+          // clearTimeout(self.setTimeoutId);
+          $(gameBox).empty();
+          showGameOverModal();
+        }
       }, interval);
     }());
     this.drops = drops;
@@ -61,7 +92,6 @@ class Controller {
   }
 
   quit() {
-    console.log(this.drops);
     this.pause();
     // Create and Inject Modal Element in the DOM
     let modalElem = $('#modal');

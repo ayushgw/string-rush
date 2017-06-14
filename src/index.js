@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 
   // Dealing KeyEvents and Bursting matched keys
-  var score = 0;
+  window.score = 0;
   window.missed = 0;
   $(document).keydown(function(key) {
     var keycode = key.which;
@@ -40,13 +40,9 @@ $(document).ready(function(){
 
     var len = $('#'+keycode).length;
     if(len == 1) {
-      score++;
+      window.score++;
       $('#'+keycode).remove();
-      $('#score').text(score);
-    }
-
-    if(score==10){
-      alert('YOU WIN!');
+      $('#score').text(window.score);
     }
   });
 
