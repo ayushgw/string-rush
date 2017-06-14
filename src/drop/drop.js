@@ -12,21 +12,22 @@ class Drop {
     domElement.css('left', this.position);
 
     let top = this.top || 0;
+    let missed = window.missed;
     let self = this;
-    let missed = 0;
-    this.setIntervalId = setInterval(function() {
+    let setIntervalId = setInterval(function() {
       top++;
       self.top = top;
       domElement.css('top', self.top + 'px');
 
       // Remove Objects after some time
-      if(self.top == 650){
-        missed++;
-        $('#missed').text(missed);
-        clearInterval(this.setIntervalId);
+      if(self.top > 650) {
+        window.missed++;
+        $('#missed').text(window.missed);
+        clearInterval(setIntervalId);
         domElement.remove();
       }
     }, 5);
+    this.setIntervalId = setIntervalId;
   }
 
   // Stop Drop

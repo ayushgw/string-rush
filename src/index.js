@@ -10,20 +10,28 @@ $(document).ready(function(){
   var gameBox = $('#gameBox');
   var gameController = new Controller(gameBox);
 
-  $('#start_button').click(function(){
+  let startBtn = $('#start_button');
+  let pauseBtn = $('#pause_button');
+  let quitBtn = $('#quit_button');
+
+  pauseBtn.prop('disabled', true);
+  startBtn.click(function(){
     gameController.play();
+    pauseBtn.prop('disabled', false);
+    startBtn.prop('disabled', true);
   });
-  $('#pause_button').click(function(){
+  pauseBtn.click(function(){
     gameController.pause();
+    startBtn.prop('disabled', false);
   });
-  $('#quit_button').click(function(){
+  quitBtn.click(function(){
     gameController.quit();
   });
 
 
   // Dealing KeyEvents and Bursting matched keys
   var score = 0;
-  var missed = 0;
+  window.missed = 0;
   $(document).keydown(function(key) {
     var keycode = key.which;
     var ch = String.fromCharCode(keycode);
@@ -31,7 +39,7 @@ $(document).ready(function(){
     // Add Burst Effect**
 
     var len = $('#'+keycode).length;
-    if(len == 1){
+    if(len == 1) {
       score++;
       $('#'+keycode).remove();
       $('#score').text(score);

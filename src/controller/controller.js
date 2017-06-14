@@ -18,6 +18,7 @@ class Controller {
     var gameBox = this.gameBox;
     var widthOfGameBox = Math.floor($(gameBox).width());
     var drops = [];
+    var missed = 0;
 
     // Create a drop
     let createOneDrop = () => {
@@ -37,7 +38,6 @@ class Controller {
 
     let getDropInterval = () => {
       let interval = Math.floor(Math.random() * 1300) + 500;
-      console.log(interval);
       return interval;
     }
 
@@ -61,6 +61,7 @@ class Controller {
   }
 
   quit() {
+    console.log(this.drops);
     this.pause();
     // Create and Inject Modal Element in the DOM
     let modalElem = $('#modal');
