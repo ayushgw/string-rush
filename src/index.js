@@ -1,14 +1,12 @@
-import './css/normalize.css';
-import './css/skeleton.css';
+import './Assets/normalize.css';
+import './Assets/skeleton.css';
 import 'mdi/css/materialdesignicons.min.css';
 
 import './index.css';
-import Controller from './js/controller';
+import Controller from './controller/controller';
 
 //Controller Events
 $(document).ready(function(){
-	console.log('#startup');
-
 	var gameBox = $('#gameBox');
 	var gameController = new Controller(gameBox);
 
@@ -18,8 +16,8 @@ $(document).ready(function(){
 	$('#pause_button').click(function(){
 		gameController.pause();
 	});
-	$('#reset_button').click(function(){
-		gameController.reset();
+	$('#quit_button').click(function(){
+		gameController.quit();
 	});
 
 	// Dealing KeyEvents and Bursting matched keys

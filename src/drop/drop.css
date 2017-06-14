@@ -1,0 +1,12 @@
+.drop {
+  top:0px;
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  color: #3B3F3F;
+  background-color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  text-align: center;
+  box-sizing: border-box;
+}

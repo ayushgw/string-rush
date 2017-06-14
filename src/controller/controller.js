@@ -1,4 +1,6 @@
-import Drop from './drops';
+import './controller.css';
+import Drop from '../drop/drop';
+import Modal from '../modal/modal';
 
 class Controller {
   constructor(gameBox){
@@ -17,11 +19,11 @@ class Controller {
       let character = String.fromCharCode(characterCode);
       let left = Math.floor(Math.random() * (widthOfGameBox - 32)) + 5 ;
 
-      let elem = $('<div id ="'+characterCode+'" class="obj">'+ character +'</div>');
-      $(gameBox).append(elem);
+      let dropElem = $('<div id ="'+characterCode+'" class="drop">'+ character +'</div>');
+      $(gameBox).append(dropElem);
 
       // Create a drop for this object
-      let drop = new Drop(elem, left);
+      let drop = new Drop(dropElem, left);
       drop.fall();
 
       drops.push(drop);
@@ -47,16 +49,29 @@ class Controller {
 
   pause(){
     clearTimeout(this.setTimeoutId);
-    for(var i=0; i<this.drops.length; i++) {
-      this.drops[i].stop();
-    }
-    // this.drops.map(function(drop) {
-    //   drop.stop();
-    // })
+    this.drops.map(function(drop) {
+      drop.stop();
+    });
   }
 
-  reset(){
-    $(this.gameBox).empty();
+  quit(){
+    let modalElem = $('#modal');
+    let modalContent = `
+    <div class="modal-content">
+      <span class="close">[<span>&times;</span>]</span>
+      <p>The game's progress will be lost.<br>
+      Are you sure you want to quit?</p>
+      <button class="modal_buttons">[OK]</button>
+      <button class="modal_buttons">[CANCEL]</button>
+    </div>
+    `;
+    $(modalElem).append(modalContent);
+
+    let modal = new Modal(modalElem);
+    modal.open();
+
+    // clearTimeout(this.setTimeoutId);
+    // $(this.gameBox).empty();
   }
 }
 

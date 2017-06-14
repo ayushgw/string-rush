@@ -1,3 +1,5 @@
+import './drop.css';
+
 class Drop {
 	constructor(domElement, position){
 		this.domElement = domElement;

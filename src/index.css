@@ -17,7 +17,7 @@ body {
   width: 100%;
   bottom: 0;
   background-color: #fff;
-  z-index: 999;
+  z-index: 99;
 }
 .function_buttons {
   margin: 0;
@@ -56,16 +56,4 @@ body {
 .rules_container {
   width: 100%;
   margin: 4%;
-}
-.obj {
-  top:0px;
-  width: 2.4rem;
-  height: 2.4rem;
-  position: absolute;
-  color: #3B3F3F;
-  background-color: #fff;
-  border-radius: 50%;
-  font-weight: bold;
-  text-align: center;
-  box-sizing: border-box;
 }
