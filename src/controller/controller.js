@@ -70,7 +70,7 @@ class Controller {
       let interval = getDropInterval();
       self.setTimeoutId = setTimeout(function() {
         createOneDrop();
-        if (window.missed < 1) {
+        if (window.missed < 10) {
           dropsLoop();
         }
         else {
@@ -86,9 +86,11 @@ class Controller {
 
   pause() {
     clearTimeout(this.setTimeoutId);
-    this.drops.map(function(drop) {
-      drop.stop();
-    });
+    if(this.drops) {
+      this.drops.map(function(drop) {
+        drop.stop();
+      });
+    }
   }
 
   quit() {
@@ -115,9 +117,8 @@ class Controller {
 
     // On OK
     $('#modal_ok').click(function() {
-      clearTimeout(setTimeoutId);
-      $(gameBox).empty();
       modal.close();
+      location.reload();
     });
 
     // On Cancel
