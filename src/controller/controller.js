@@ -9,8 +9,8 @@ class Controller {
 
   // Creating objects on the go
   play() {
-    if(this.drops) {
-      this.drops.map(function(drop) {
+    if(window.drops) {
+      window.drops.map(function(drop) {
         drop.fall();
       });
     }
@@ -32,7 +32,8 @@ class Controller {
       let drop = new Drop(dropElem, left);
       drop.fall();
 
-      drops.push(drop);
+      // drops.push(drop);
+      window.drops.push(drop);
     }
 
     let getDropInterval = () => {
@@ -50,7 +51,7 @@ class Controller {
       <button id="modal_ok" class="modal_buttons">[OK]</button>
       </div>
       `;
-      $(modalElem).append(modalContent);
+      $(modalElem).html(modalContent);
       $('finalScore').innerText = window.score;
 
       // Instatiating Modal
@@ -75,19 +76,17 @@ class Controller {
         }
         else {
           self.pause();
-          // clearTimeout(self.setTimeoutId);
           $(gameBox).empty();
           showGameOverModal();
         }
       }, interval);
     }());
-    this.drops = drops;
   }
 
   pause() {
     clearTimeout(this.setTimeoutId);
-    if(this.drops) {
-      this.drops.map(function(drop) {
+    if(window.drops) {
+      window.drops.map(function(drop) {
         drop.stop();
       });
     }
@@ -106,7 +105,7 @@ class Controller {
     <button id="modal_cancel" class="modal_buttons">[CANCEL]</button>
     </div>
     `;
-    $(modalElem).append(modalContent);
+    $(modalElem).html(modalContent);
 
     // Instatiating Modal
     let modal = new Modal(modalElem);

@@ -14,14 +14,18 @@ $(document).ready(function(){
   let pauseBtn = $('#pause_button');
   let quitBtn = $('#quit_button');
 
+  window.drops = [];
+
   pauseBtn.prop('disabled', true);
   startBtn.click(function(){
     window.isPlaying = true;
+    window.isPaused = false;
     gameController.play();
     pauseBtn.prop('disabled', false);
     startBtn.prop('disabled', true);
   });
   pauseBtn.click(function(){
+    window.isPaused = true;
     gameController.pause();
     startBtn.prop('disabled', false);
   });
@@ -36,6 +40,7 @@ $(document).ready(function(){
   window.score = 0;
   window.missed = 0;
   window.isPlaying = false;
+  window.isPaused = false;
   $(document).keydown(function(key) {
     var keycode = key.which;
     var ch = String.fromCharCode(keycode);
@@ -64,12 +69,22 @@ $(document).ready(function(){
     }
     else {
       var len = $('#'+keycode).length;
-      if(len == 1) {
+      if(len == 1 && !window.isPaused) {
+        var letterObject = window.drops.filter(function(drop) {
+          return drop.domElement[0].id == keycode;
+        });
+        removeLetter(letterObject);
         window.score++;
-        $('#'+keycode).remove();
         $('#score').text(window.score);
       }
     }
+
+    function removeLetter(obj) {
+      clearInterval(obj[0].setIntervalId);
+      $('#'+keycode).remove();
+      obj = null;
+    }
+
   });
 
 
